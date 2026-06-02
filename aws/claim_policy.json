@@ -1,0 +1,42 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Connect",
+      "Effect": "Allow",
+      "Action": "iot:Connect",
+      "Resource": "arn:aws:iot:eu-north-1:978236789991:client/*"
+    },
+    {
+      "Sid": "PublishProvisioning",
+      "Effect": "Allow",
+      "Action": "iot:Publish",
+      "Resource": [
+        "arn:aws:iot:eu-north-1:978236789991:topic/$aws/certificates/create/json",
+        "arn:aws:iot:eu-north-1:978236789991:topic/$aws/provisioning-templates/SmartBinFleetTemplate/provision/json"
+      ]
+    },
+    {
+      "Sid": "SubscribeProvisioning",
+      "Effect": "Allow",
+      "Action": "iot:Subscribe",
+      "Resource": [
+        "arn:aws:iot:eu-north-1:978236789991:topicfilter/$aws/certificates/create/json/accepted",
+        "arn:aws:iot:eu-north-1:978236789991:topicfilter/$aws/certificates/create/json/rejected",
+        "arn:aws:iot:eu-north-1:978236789991:topicfilter/$aws/provisioning-templates/SmartBinFleetTemplate/provision/json/accepted",
+        "arn:aws:iot:eu-north-1:978236789991:topicfilter/$aws/provisioning-templates/SmartBinFleetTemplate/provision/json/rejected"
+      ]
+    },
+    {
+      "Sid": "ReceiveProvisioning",
+      "Effect": "Allow",
+      "Action": "iot:Receive",
+      "Resource": [
+        "arn:aws:iot:eu-north-1:978236789991:topic/$aws/certificates/create/json/accepted",
+        "arn:aws:iot:eu-north-1:978236789991:topic/$aws/certificates/create/json/rejected",
+        "arn:aws:iot:eu-north-1:978236789991:topic/$aws/provisioning-templates/SmartBinFleetTemplate/provision/json/accepted",
+        "arn:aws:iot:eu-north-1:978236789991:topic/$aws/provisioning-templates/SmartBinFleetTemplate/provision/json/rejected"
+      ]
+    }
+  ]
+}

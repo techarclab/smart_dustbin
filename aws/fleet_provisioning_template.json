@@ -1,0 +1,44 @@
+{
+  "Parameters": {
+    "bin_id":    { "Type": "String" },
+    "bin_name":  { "Type": "String" },
+    "ward":      { "Type": "String" },
+    "route":     { "Type": "String" },
+    "place":     { "Type": "String" },
+    "latitude":  { "Type": "String" },
+    "longitude": { "Type": "String" },
+    "AWS::IoT::Certificate::Id": { "Type": "String" }
+  },
+  "Resources": {
+    "thing": {
+      "Type": "AWS::IoT::Thing",
+      "Properties": {
+        "ThingName": { "Fn::Join": ["", ["esp32-smartbin-", { "Ref": "bin_id" }]] },
+        "AttributePayload": {
+          "bin_id": { "Ref": "bin_id" },
+          "ward":   { "Ref": "ward" },
+          "route":  { "Ref": "route" }
+        },
+        "ThingGroups": ["SmartBinFleet"]
+      },
+      "OverrideSettings": {
+        "AttributePayload": "REPLACE",
+        "ThingGroups": "DO_NOTHING"
+      }
+    },
+    "certificate": {
+      "Type": "AWS::IoT::Certificate",
+      "Properties": {
+        "CertificateId": { "Ref": "AWS::IoT::Certificate::Id" },
+        "Status": "ACTIVE"
+      }
+    },
+    "policy": {
+      "Type": "AWS::IoT::Policy",
+      "Properties": { "PolicyName": "SmartBinDevicePolicy" }
+    }
+  },
+  "DeviceConfiguration": {
+    "telemetryTopic": { "Fn::Join": ["", ["smartbin/", { "Ref": "bin_id" }, "/telemetry"]] }
+  }
+}

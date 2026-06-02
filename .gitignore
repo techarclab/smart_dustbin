@@ -1,0 +1,20 @@
+# Gradle
+.gradle/
+**/.gradle/
+**/.codex_gradle_home/
+
+# Android
+**/build/
+**/.idea/
+**/.kotlin/
+
+# Node
+**/node_modules/
+**/dist/
+
+# ESP-IDF
+**/build/
+**/.vscode/
+
+# Logs
+*.log

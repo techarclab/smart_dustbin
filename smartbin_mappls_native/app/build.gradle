@@ -1,0 +1,28 @@
+plugins {
+    id 'com.android.application'
+    id 'com.mappls.services.android'
+}
+
+android {
+    namespace 'com.smartbin.control'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.smartbin.control'
+        minSdk 23
+        targetSdk 35
+        versionCode 12
+        versionName '1.2.1-mappls'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation platform('com.mappls.sdk:mappls-bom:2.0.1')
+    implementation 'com.mappls.sdk:mappls-android-sdk'
+    implementation 'androidx.work:work-runtime:2.9.1'
+}
